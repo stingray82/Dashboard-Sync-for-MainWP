@@ -14,7 +14,7 @@ to:
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard%20Sync%20for%20MainWP/Dashboard%20Sync.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/Dashboard Sync.png)
 
  
 
@@ -59,16 +59,16 @@ to:
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard%20Sync%20for%20MainWP/Dashboard%20Sync.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/Dashboard Sync.png)
 
  
 
-1.  Set your custom Prefix in the extensions menu this must be the same on **ALL
-    **Child sites
+1.  Set your custom Prefix in the extensions menu this must be the same on
+    **ALL** Child sites
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard%20Sync%20for%20MainWP/Dashboard-Sync-MainWP.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/Dashboard-Sync-MainWP.png)
 
 1.  Optionally if you have recipes and you want to activate them, you enable
     them in this same menu.
@@ -123,9 +123,6 @@ These need enabling within the Extensions Menu
 
  
 
-  
-
-
 **MainWP Child Sync Plugin**
 ============================
 
@@ -167,7 +164,7 @@ The MainWP Child Sync plugin enables child sites to:
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard%20Sync%20for%20MainWP/Child-Prefix.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/Child-Prefix.png)
 
  
 
@@ -240,7 +237,7 @@ They are all designed to be installed in a snippet plugin (I recommend
 
 *In most cases there will be a snippet (recipe) for the child site and the
 dashboard site they could also be deployed using the MainWP snippet manager and
-this is why they have been designed this way. *
+this is why they have been designed this way.*
 
  
 
@@ -253,25 +250,29 @@ this is why they have been designed this way. *
 
 Introduces the following new report tokens
 
--   **Flowmattic Workflows:** `[12345_rup_mainwp_flowmattic_workflows_count]`
+-   **Flowmattic Workflows:**
+    `[***Customprefix***_rup_mainwp_flowmattic_workflows_count]`
 
--   **Flowmattic Tables:** `[12345_rup_mainwp_flowmattic_tables_count]`
+-   **Flowmattic Tables:**
+    `[***Customprefix***_rup_mainwp_flowmattic_tables_count]`
 
 -   **Flowmattic AI Assistants:**
-    `[12345_rup_mainwp_flowmattic_ai_assistants_count]`
+    `[***Customprefix***_rup_mainwp_flowmattic_ai_assistants_count]`
 
--   **Flowmattic Connects:** `[12345_rup_mainwp_flowmattic_connects_count]`
+-   **Flowmattic Connects:**
+    `[***Customprefix***_rup_mainwp_flowmattic_connects_count]`
 
--   **Flowmattic Variables:** `[12345_rup_mainwp_flowmattic_variables_count]`
+-   **Flowmattic Variables:**
+    `[***Customprefix***_rup_mainwp_flowmattic_variables_count]`
 
 -   **Flowmattic Integrations:**
-    `[12345_rup_mainwp_flowmattic_integrations_count]`
+    `[***Customprefix***_rup_mainwp_flowmattic_integrations_count]`
 
 -   **Flowmattic Custom Apps:**
-    `[12345_rup_mainwp_flowmattic_custom_apps_count]`
+    `[***Customprefix***_rup_mainwp_flowmattic_custom_apps_count]`
 
 -   **Flowmattic Tasks Executions:**
-    `[12345_rup_mainwp_flowmattic_tasks_executions_count]`
+    `[***Customprefix***_rup_mainwp_flowmattic_tasks_executions_count]`
 
  
 
@@ -280,7 +281,7 @@ exists which looks like the below:
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard%20Sync%20for%20MainWP/Flowmattic.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/Flowmattic.png)
 
  
 
@@ -296,20 +297,20 @@ populated.
 
 Introduces the following new report tokens
 
--   **Blocked Today:** `[12345_rup_wparmour_today_total]`
+-   **Blocked Today:** `[***Customprefix***_rup_wparmour_today_total]`
 
--   **Blocked This Week:** `[12345_rup_wparmour_thisweek_total]`
+-   **Blocked This Week:** `[***Customprefix***_rup_wparmour_thisweek_total]`
 
--   **Blocked This Month:** `[12345_rup_wparmour_thismonth_total]`
+-   **Blocked This Month:** `[***Customprefix***_rup_wparmour_thismonth_total]`
 
--   **Blocked All Time:** `[12345_rup_wparmour_alltime_total]`
+-   **Blocked All Time:** `[***Customprefix***_rup_wparmour_alltime_total]`
 
  
 
 As well as if enabled within the extension menu, an optional child site menu
 exists which looks like the below:
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard%20Sync%20for%20MainWP/WP-Armour.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/WP-Armour.png)
 
  
 
@@ -318,6 +319,22 @@ exists which looks like the below:
 Install the Child Snippet on the child site(s) and the dashboard snippet on the
 dashboard site, sync data and the snippets and menus should be active and
 populated.
+
+ 
+
+### **3. Add Users by Role to Pro-reports**
+
+Adds the following new report token, this only needs adding to the child sites
+there is no admin menu so there is NO need for a dashboard snippet.
+
+**Users By Role:** `[***Customprefix***`\_rup_all_users_table_html`]`
+
+  
+this is Pre-html formatted and looks like this in final report.
+
+ 
+
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard%20Sync%20for%20MainWP/All%20Users.png)
 
  
 
