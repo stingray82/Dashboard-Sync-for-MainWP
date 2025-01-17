@@ -14,7 +14,7 @@ to:
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/Dashboard Sync.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard-Sync-for-MainWP/Dashboard-sync.png)
 
  
 
@@ -59,7 +59,7 @@ to:
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/Dashboard Sync.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard-Sync-for-MainWP/Dashboard-sync.png)
 
  
 
@@ -68,7 +68,7 @@ to:
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/Dashboard-Sync-MainWP.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard-Sync-for-MainWP/Dashboard-Sync-MainWP.png)
 
 1.  Optionally if you have recipes and you want to activate them, you enable
     them in this same menu.
@@ -164,7 +164,7 @@ The MainWP Child Sync plugin enables child sites to:
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/Child-Prefix.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard-Sync-for-MainWP/Child-Prefix.png)
 
  
 
@@ -281,7 +281,7 @@ exists which looks like the below:
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/Flowmattic.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard-Sync-for-MainWP/Flowmattic.png)
 
  
 
@@ -310,7 +310,7 @@ Introduces the following new report tokens
 As well as if enabled within the extension menu, an optional child site menu
 exists which looks like the below:
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard Sync for MainWP/WP-Armour.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard-Sync-for-MainWP/WP-Armour.png)
 
  
 
@@ -329,12 +329,11 @@ there is no admin menu so there is NO need for a dashboard snippet.
 
 **Users By Role:** `[***Customprefix***`\_rup_all_users_table_html`]`
 
-  
 this is Pre-html formatted and looks like this in final report.
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard%20Sync%20for%20MainWP/All%20Users.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard-Sync-for-MainWP/All%20Users.png)
 
  
 
