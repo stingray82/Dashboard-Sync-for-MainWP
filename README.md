@@ -281,7 +281,7 @@ exists which looks like the below:
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard-Sync-for-MainWP/Flowmattic.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard-Sync-for-MainWP/Flowmattic-receipe-new.png)
 
  
 
@@ -333,7 +333,7 @@ this is Pre-html formatted and looks like this in final report.
 
  
 
-![](https://github.com/stingray82/repo-images/raw/main/Dashboard-Sync-for-MainWP/All%20Users.png)
+![](https://github.com/stingray82/repo-images/raw/main/Dashboard-Sync-for-MainWP/All Users.png)
 
  
 
