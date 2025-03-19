@@ -1,16 +1,19 @@
 <?php
 /**
  * Plugin Name:       Dashboard Sync for MainWP
- * Plugin URI:        https://github.com/stingray82/
+ * Tested up to:      6.7.2
  * Description:       This extension allows syncing custom data from MainWP child sites, generting custom pro-report templates and managing settings for custom admin pages for this data
+ * Requires at least: 6.5
+ * Requires PHP:      7.4
  * Version:           1.1
  * Author:            Stingray82
  * Author URI:        https://github.com/stingray82/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       dashboard-sync
- * Domain Path:       /languages
- */
+ * Website:           https://reallyusefulplugins.com
+ * */
+
 
 // Define the prefix for synced data (fallback to 'custom_' if not defined)
 if (get_option('custom_mainwp_prefix') === false) {
@@ -259,3 +262,75 @@ function mainwp_getwebsiteoptions_wildcard($websiteId, $wildcard) {
 
 // Register the new filter
 add_filter('mainwp_getwebsiteoptions_wildcard', 'mainwp_getwebsiteoptions_wildcard', 10, 2);
+
+/**
+ * Fetch data dynamically from the child site during pro-report generation.
+ */
+add_filter('mainwp_pro_reports_generate_report_content', function ($report_content, $report_id, $site_id, $from_date, $to_date) {
+    global $custom_mainwp_prefix;
+
+    error_log("Generating report content for site ID: $site_id, Date Range: $from_date - $to_date");
+
+    // Trigger the child plugin to fetch real-time data
+    $response = apply_filters(
+        'mainwp_child_execute',
+        $site_id,
+        'fetch_dated_data',
+        ['from' => $from_date, 'to' => $to_date]
+    );
+
+    // Handle errors in communication
+    if (is_wp_error($response)) {
+        error_log('Error fetching data from child site: ' . $response->get_error_message());
+        return $report_content . "\nError fetching data from child site: " . $response->get_error_message();
+    }
+
+    // Check if the response contains errors
+    if (isset($response['error'])) {
+        error_log('Error from child site: ' . $response['error']);
+        return $report_content . "\nError from child site: " . $response['error'];
+    }
+
+    // Add fetched data to the report content
+    foreach ($response as $key => $value) {
+        $token_name = '[' . $key . ']';
+        $formatted_value = is_array($value) ? implode(', ', $value) : $value;
+
+        // Append to the report content
+        $report_content .= strtoupper(str_replace($custom_mainwp_prefix, '', $key)) . ': ' . $formatted_value . "\n";
+
+        // Register the token for pro-reports
+        $tokensValues[$token_name] = $formatted_value;
+    }
+
+    return $report_content;
+}, 10, 5);
+
+/**
+ * Add dynamically fetched tokens to MainWP Pro Reports.
+ */
+add_filter('mainwp_pro_reports_custom_tokens', function ($tokensValues, $report, $site) {
+    global $custom_mainwp_prefix;
+
+    error_log("Adding custom tokens for site ID: {$site['id']}");
+
+    // Get keys for fetched data
+    $keys = apply_filters('mainwp_getwebsiteoptions', false, $site['id'], $custom_mainwp_prefix . 'dated_keys');
+
+    if ($keys !== false && is_string($keys)) {
+        $keys = array_map('trim', explode(',', $keys));
+        error_log('Fetched keys: ' . print_r($keys, true));
+
+        foreach ($keys as $key) {
+            $value = apply_filters('mainwp_getwebsiteoptions', false, $site['id'], $custom_mainwp_prefix . $key);
+            if ($value !== false) {
+                $token_name = '[' . $custom_mainwp_prefix . $key . ']';
+                $tokensValues[$token_name] = is_array($value) ? implode(', ', $value) : $value;
+
+                error_log("Token added: $token_name | Value: " . print_r($value, true));
+            }
+        }
+    }
+
+    return $tokensValues;
+}, 10, 3);

@@ -1,16 +1,19 @@
 <?php
 /**
  * Plugin Name:       Main WP Child Sync
- * Plugin URI:        https://github.com/stingray82/
+ * Tested up to:      6.7.2
  * Description:       MainWP Child Syner
+ * Requires at least: 6.5
+ * Requires PHP:      7.4
  * Version:           1.0
  * Author:            Stingray82
  * Author URI:        https://github.com/stingray82/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       dashboard-sync
- * Domain Path:       /languages
- */
+ * Website:           https://reallyusefulplugins.com
+ * */
+
 
 
 /* Example of filter user //
@@ -107,3 +110,44 @@ function custom_mainwp_sync_settings_page() {
     echo '</div>';
 }
 
+/**
+ * Handle real-time data fetching for MainWP Pro Reports.
+ */
+add_action('mainwp_child_fetch_data', function ($action, $params) {
+    global $custom_mainwp_prefix;
+
+    error_log("Child Plugin - Fetch Data Action Triggered: $action");
+    error_log("Parameters Received: " . print_r($params, true));
+
+    // Initialize response
+    $response = ['error' => 'Invalid action requested.'];
+
+    // Fetch dated data dynamically
+    if ($action === 'fetch_dated_data') {
+        $from_date = $params['from'] ?? date('Y-m-d', strtotime('-1 month'));
+        $to_date = $params['to'] ?? date('Y-m-d');
+
+        error_log("Fetching dated data from $from_date to $to_date");
+
+        try {
+            // Filter for dated data
+            $dated_data = apply_filters('custom_mainwp_sync_dated_data', [], $from_date, $to_date);
+
+            if (!empty($dated_data)) {
+                $response = $dated_data;
+                error_log("Dated data fetched successfully: " . print_r($dated_data, true));
+            } else {
+                $response = ['error' => 'No dated data found.'];
+                error_log("No dated data found for range $from_date to $to_date.");
+            }
+        } catch (Exception $e) {
+            $response = ['error' => 'Error fetching dated data: ' . $e->getMessage()];
+            error_log("Error fetching dated data: " . $e->getMessage());
+        }
+    }
+
+    // Allow additional custom actions to be handled dynamically
+    $response = apply_filters('custom_mainwp_real_time_data', $response, $action, $params);
+
+    return $response;
+}, 10, 2);
