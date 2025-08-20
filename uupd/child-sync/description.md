@@ -1,0 +1,1 @@
+Child Sync installs lightweight helpers on child sites so Dashboard Sync can communicate reliably.

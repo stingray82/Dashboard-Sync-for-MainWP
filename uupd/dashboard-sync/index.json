@@ -1,0 +1,26 @@
+{
+  "slug": "dashboard-sync",
+  "name": "Dashboard Sync",
+  "version": "1.1.1",
+  "author": "reallyusefulplugins.com",
+  "author_homepage": "https://reallyusefulplugins.com",
+  "requires_php": "7.4",
+  "requires": "6.5",
+  "tested": "6.8.2",
+  "sections": {
+    "description": "Dashboard Sync keeps your MainWP dashboard in lockstep with client sites.<br/>- Real-time sync of settings<br/>- Lite footprint, zero bloat",
+    "installation": "1. Upload the `dashboard-sync` folder to `/wp-content/plugins/`.<br/>2. Activate *Dashboard Sync* from **Plugins**.<br/>3. Open **Settings → Dashboard Sync** to configure.",
+    "frequently_asked_questions": "**Does this require MainWP?**  <br/>Yes, it is designed to work with MainWP dashboards.",
+    "changelog": "### 1.1.1<br/>- New: Automatic Updates<br/>- "
+  },
+  "last_updated": "2025-08-20 17:04:54",
+  "download_url": "https://github.com/stingray82/Dashboard-Sync-for-MainWP/releases/latest/download/dashboard-sync.zip",
+  "banners": {
+    "low": "https://raw.githubusercontent.com/stingray82/Dashboard-Sync-for-MainWP/main/uupd/dashboard-sync/banner-772x250.png",
+    "high": "https://raw.githubusercontent.com/stingray82/Dashboard-Sync-for-MainWP/main/uupd/dashboard-sync/banner-1544x500.png"
+  },
+  "icons": {
+    "1x": "https://raw.githubusercontent.com/stingray82/Dashboard-Sync-for-MainWP/main/uupd/dashboard-sync/icon-128.png",
+    "2x": "https://raw.githubusercontent.com/stingray82/Dashboard-Sync-for-MainWP/main/uupd/dashboard-sync/icon-256.png"
+  }
+}

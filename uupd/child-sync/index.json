@@ -1,0 +1,26 @@
+{
+  "slug": "child-sync",
+  "name": "Child Sync",
+  "version": "1.0.1",
+  "author": "reallyusefulplugins.com",
+  "author_homepage": "https://reallyusefulplugins.com",
+  "requires_php": "7.4",
+  "requires": "6.5",
+  "tested": "6.8.2",
+  "sections": {
+    "description": "Child Sync installs lightweight helpers on child sites so Dashboard Sync can communicate reliably.",
+    "installation": "1. Upload `child-sync` to `/wp-content/plugins/`.<br/>2. Activate *Child Sync* on target sites.",
+    "frequently_asked_questions": "",
+    "changelog": "### 1.0.1<br/>- New: Automatic Updates setup<br/>- New MainWP Icon Filter"
+  },
+  "last_updated": "2025-08-20 17:04:33",
+  "download_url": "https://github.com/stingray82/Dashboard-Sync-for-MainWP/releases/latest/download/child-sync.zip",
+  "banners": {
+    "low": "https://raw.githubusercontent.com/stingray82/Dashboard-Sync-for-MainWP/main/uupd/child-sync/banner-772x250.png",
+    "high": "https://raw.githubusercontent.com/stingray82/Dashboard-Sync-for-MainWP/main/uupd/child-sync/banner-1544x500.png"
+  },
+  "icons": {
+    "1x": "https://raw.githubusercontent.com/stingray82/Dashboard-Sync-for-MainWP/main/uupd/child-sync/icon-128.png",
+    "2x": "https://raw.githubusercontent.com/stingray82/Dashboard-Sync-for-MainWP/main/uupd/child-sync/icon-256.png"
+  }
+}
