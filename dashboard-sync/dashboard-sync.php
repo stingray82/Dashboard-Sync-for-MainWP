@@ -362,3 +362,5 @@ add_action( 'plugins_loaded', function() {
     \RUP\Updater\Updater_V1::register( $updater_config );
 }, 20 );
 
+
+
