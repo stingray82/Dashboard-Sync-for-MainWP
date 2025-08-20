@@ -1,20 +1,18 @@
 <?php
 /**
  * Plugin Name:       Main WP Child Sync
- * Tested up to:      6.7.2
  * Description:       MainWP Child Syner
+ * Tested up to:      6.8.2
  * Requires at least: 6.5
  * Requires PHP:      7.4
- * Version:           1.0
+ * Version:           1.0.1
  * Author:            Stingray82
  * Author URI:        https://github.com/stingray82/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       dashboard-sync
  * Website:           https://reallyusefulplugins.com
- * */
-
-
+ */
 
 /* Example of filter user //
 
@@ -151,3 +149,42 @@ add_action('mainwp_child_fetch_data', function ($action, $params) {
 
     return $response;
 }, 10, 2);
+
+
+define('RUP_MAINWP_CHILD_SYNC_VERSION', '1.0.1');
+
+
+// ──────────────────────────────────────────────────────────────────────────
+//  Updater bootstrap (plugins_loaded priority 1):
+// ──────────────────────────────────────────────────────────────────────────
+add_action( 'plugins_loaded', function() {
+    // 1) Load our universal drop-in. Because that file begins with "namespace UUPD\V1;",
+    //    both the class and the helper live under UUPD\V1.
+    require_once __DIR__ . '/inc/updater.php';
+
+    // 2) Build a single $updater_config array:
+    $updater_config = [
+        'plugin_file' => plugin_basename( __FILE__ ),             // e.g. "simply-static-export-notify/simply-static-export-notify.php"
+        'slug'        => 'child-sync',           // must match your updater‐server slug
+        'name'        => 'MainWP Child Sync',         // human‐readable plugin name
+        'version'     => RUP_MAINWP_CHILD_SYNC_VERSION, // same as the VERSION constant above
+        'key'         => '',                 // your secret key for private updater
+        'server'      => 'https://raw.githubusercontent.com/stingray82/Dashboard-Sync-for-MainWP/main/uupd/child-sync/index.json',
+    ];
+
+    // 3) Call the helper in the UUPD\V1 namespace:
+    \RUP\Updater\Updater_V1::register( $updater_config );
+}, 20 );
+
+
+add_filter('mainwp_child_stats_get_plugin_info', function($info, $slug) {
+
+    if ('child-sync/child-sync.php' === $slug) {
+        $info['icon'] = 'https://raw.githubusercontent.com/stingray82/Dashboard-Sync-for-MainWP/main/uupd/child-sync/icon-128.png'; // Supported types: jpeg, jpg, gif, ico, png
+    }
+
+    return $info;
+
+}, 10, 2);
+
+
