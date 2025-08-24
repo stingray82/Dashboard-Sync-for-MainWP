@@ -335,6 +335,68 @@ add_filter('mainwp_pro_reports_custom_tokens', function ($tokensValues, $report,
 }, 10, 3);
 
 
+function rup_mwp_get_prefix() {
+    return rtrim( get_option( 'custom_mainwp_prefix', 'custom' ), '_' );
+}
+
+
+
+function rup_mwp_get_site_opt( $site_id, $key, $default = '' ) {
+    $val = apply_filters( 'mainwp_getwebsiteoptions', null, $site_id, $key );
+    return $val === null ? $default : $val;
+}
+
+/**
+ * Write a MainWP per-site option.
+ * Returns true if written via MainWP hooks; false if fell back to local storage.
+ */
+function rup_mwp_set_site_opt( $site_id, $key, $value ) {
+    // MainWP expects strings; JSON-encode complex values.
+    if ( is_array( $value ) || is_object( $value ) ) {
+        $value = wp_json_encode( $value );
+    }
+
+    // Build the options array MainWP expects.
+    $options = [ $key => $value ];
+
+    // Prefer the newer action; both expect 4 params.
+    if ( has_action( 'mainwp_setwebsiteoptions' ) ) {
+        // Args: $website_id, array $options, $core (unused), $encrypt (bool)
+        do_action( 'mainwp_setwebsiteoptions', $site_id, $options, false, false );
+        return true;
+    }
+
+    if ( has_action( 'mainwp_updatewebsiteoptions' ) ) {
+        // Same signature on older installs.
+        do_action( 'mainwp_updatewebsiteoptions', $site_id, $options, false, false );
+        return true;
+    }
+
+    // Fallback: store locally so the UI doesn’t lose the user’s changes.
+    update_option( $key . '_' . $site_id, $value, false );
+    return false;
+}
+
+
+
+function rup_mwp_push_to_child( $site_id, $command, $payload = [] ) {
+    $child_file = $GLOBALS['your_extension_activator']->get_child_file();
+    $child_key  = $GLOBALS['your_extension_activator']->get_child_key();
+
+    return apply_filters(
+        'mainwp_fetchurlauthed',
+        $child_file,
+        $child_key,
+        $site_id,
+        'extra_execution',
+        [ 'custom_data' => [
+            'command' => $command,
+            'options' => $payload,
+            'schema'  => 'v1',
+        ] ]
+    );
+}
+
 
 
 define('RUP_MAINWP_DASHBOARD_SYNC_VERSION', '1.1.1');
